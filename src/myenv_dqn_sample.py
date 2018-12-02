@@ -49,22 +49,22 @@ def myperser():
                 epilog=MYSTR.EPILOG.value,
                 add_help=True,
                 )
-    parser.add_argument('-s', '--nb-steps', default=50000,
+    parser.add_argument('-s', '--nb-steps', type=int, default=50000,
                         help='step count')
-    parser.add_argument('-l', '--limit', default=50000,
+    parser.add_argument('-l', '--limit', type=int, default=50000,
                         help='memory limit')
-    parser.add_argument('-wl', '--window-length', default=1,
+    parser.add_argument('-wl', '--window-length', type=int, default=1,
                         help='window length')
-    parser.add_argument('-u', '--target-model-update', default=1e-2,
-                        help='target models update rate')
-    parser.add_argument('-r', '--learning-rate', default=1e-3,
-                        help='deep learnings learning rate')
-    parser.add_argument('-wu', '--warmup', default=10,
+    parser.add_argument('-u', '--target-model-update', type=float,
+                        default=1e-2, help='target models update rate')
+    parser.add_argument('-r', '--learning-rate', type=float,
+                        default=1e-3, help='deep learnings learning rate')
+    parser.add_argument('-wu', '--warmup', type=int, default=10,
                         help='warmup number')
-    parser.add_argument('-te', '--nb-episodes', default=5,
+    parser.add_argument('-te', '--nb-episodes', type=int, default=5,
                         help='dqn test episodes')
     parser.add_argument('-e', '--exec-type', help='TRAIN or TEST')
-    parser.add_argument('-v', '--verbose', default=2,
+    parser.add_argument('-v', '--verbose', type=int, default=2,
                         help='select mode')
     return parser
 
