@@ -2,6 +2,7 @@
 # -*- coding:utf-8 -*-
 
 import myenv
+import logger
 import numpy as np
 import argparse
 from enum import Enum
@@ -23,9 +24,17 @@ class MYSTR(Enum):
     USAGE = 'DQN SAMPLE'
     DESCRIPTION = 'description'
     EPILOG = 'end'
+
     SEED = 123
     TRAIN = 'TRAIN'
     TEST = 'TEST'
+
+
+class OUTMSG(Enum):
+    OUTPUT_HEADER = '[OUTPUT]: '
+    ACTIONS_OP_MSG = 'actions are: '
+    OBSERVE_OP_MSG = 'observetions are: '
+    REWARDS_OP_MSG = 'rewards are: '
 
 
 class ERRMSG(Enum):
@@ -79,7 +88,14 @@ def exec_dqn(trainOrTest, env, dqn, nb_steps, verbose, episodes):
                          overwrite=True)
     elif trainOrTest == MYSTR.TEST.value:
         dqn.load_weights('dqn_{}_weights.h5f'.format(ENV_NAME))
-        dqn.test(env, nb_episodes=episodes, visualize=True)
+        cb_ep = logger.EpisodeLogger()
+        dqn.test(env, nb_episodes=episodes, visualize=True,
+                 callbacks=[cb_ep])
+        for index, ep_ac in enumerate(cb_ep.actions.values()):
+            print(OUTMSG.OUTPUT_HEADER.value +
+                  'episode_{}:'.format(index) +
+                  OUTMSG.ACTIONS_OP_MSG.value +
+                  str(ep_ac))
     else:
         raise TypeError(ERRMSG.ERROR_HEADER.value +
                         ERRMSG.EXEC_ERROR.value)
