@@ -16,12 +16,12 @@ from rl.agents.dqn import DQNAgent
 from rl.policy import BoltzmannQPolicy
 from rl.memory import SequentialMemory
 
-ENV_NAME = 'myenv-v0'
+ENV_NAME = 'myenv-v1'
 
 
 class MYSTR(Enum):
     MYPROGRAM_NAME = 'MYPROGRAM'
-    USAGE = 'DQN SAMPLE'
+    USAGE = 'DQN Y&M'
     DESCRIPTION = 'description'
     EPILOG = 'end'
 
@@ -72,9 +72,9 @@ def myperser():
 def create_model(env, action_n):
     in_ = Input(shape=(1,) + env.observation_space.shape, name='input')
     fl_ = Flatten()(in_)
-    dn_ = Dense(16, activation='relu')(fl_)
-    dn_ = Dense(16, activation='relu')(dn_)
-    dn_ = Dense(16, activation='relu')(dn_)
+    dn_ = Dense(32, activation='relu')(fl_)
+    dn_ = Dense(32, activation='relu')(dn_)
+    dn_ = Dense(32, activation='relu')(dn_)
     ou_ = Dense(action_n, activation='linear')(dn_)
     return Model(inputs=in_, outputs=ou_)
 
