@@ -50,7 +50,6 @@ class MyEnv(gym.Env):
         self.done = False
         self.damage = 0
         self.steps = 0
-
         return self._observe()
 
     def _step(self, action):
@@ -74,9 +73,7 @@ class MyEnv(gym.Env):
         reward = self._get_reward(self.pos, moved)
         self.damage += self._get_damage(self.pos)
         self.done = self._is_done()
-
         return observation, reward, self.done, {}
-
 
     def _render(self, mode='human', close=False):
         """環境を可視化する"""
@@ -86,7 +83,6 @@ class MyEnv(gym.Env):
                 ) for row in self._observe()
             ) + '\n\n'
         )
-
         return outfile
 
     def _close(self):
