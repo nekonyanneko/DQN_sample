@@ -9,7 +9,7 @@
 ### code
  - src/myenv/env.py
     - this code is defined environment, reward etc
- - src/myenv/\_\_init\_\__.py
+ - src/myenv/\_\_init\_\_.py
     - this code defines an alias for env
  - src/myenv_dqn_sample.py
     - this code is main rootine.
