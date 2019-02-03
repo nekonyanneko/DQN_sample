@@ -14,5 +14,5 @@ register(
     )
 register(
     id='myenv-v2',
-    entry_point='myenv.sampleAd:MyEnv'
+    entry_point='myenv.envAd:MyEnv'
     )
